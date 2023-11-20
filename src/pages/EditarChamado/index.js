@@ -109,14 +109,14 @@ export default props =>{
             <TextInput 
             style={styles.text2}
             placeholder="Classificacao..." 
-            value={initialClassificacaoNome}
+            value={classificacaoNome1}
             onChangeText={(text) => setClassificacaoNome(text)}
             />
             <Text style={styles.text1}>Solicitante Id</Text>
             <TextInput 
             style={styles.text2}
             placeholder="Solicitante..." 
-            value={initialSolicitanteNome}
+            value={solicitanteNome1}
             onChangeText={ (text)  => setSolicitanteNome(text) }
             />
             <Text style={styles.text1}>Executante Id</Text>

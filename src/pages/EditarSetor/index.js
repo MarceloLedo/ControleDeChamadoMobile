@@ -1,37 +1,32 @@
 import { useRoute } from '@react-navigation/native';
 import {  Alert, StyleSheet, TextInput, View, Text, TouchableOpacity } from "react-native"
 import { API_ENDPOINT } from "../../config";
-import { useRoute } from '@react-navigation/native';
 import React, { useState } from 'react';
-
-
-
-
 
 export default props =>{
     const route = useRoute();
-    const { setorId } = route.params;
-    const { nome } = route.params;
-    const { funcao  } = route.params;
-    const { ramal } = route.params;
-    const { status } = route.params;
+    const { idSetor } = route.params;
+    const { setorNome } = route.params;
+    const { setorFuncao  } = route.params;
+    const { setorRamal } = route.params;
+    const { setorStatus } = route.params;
     
-    const initialIdSetor = setorId ;
-    const initialNome = nome ;
-    const initialFuncao = funcao;
-    const initialRamal = ramal;
-    const initialStatus= status;
+    const initialIdSetor = idSetor ;
+    const initialNome = setorNome ;
+    const initialFuncao = setorFuncao;
+    const initialRamal = setorRamal;
+    const initialStatus= setorStatus;
     
-    console.log(initialIdSetor,initialNome,initialFuncao,initialRamal,initialStatus)
+    //console.log(initialIdSetor,initialNome,initialFuncao,initialRamal,initialStatus)
     
-    const Id = setorId;
-    [setorId, setSetorId] = useState(initialIdSetor);
+    const Id = idSetor;
+    [IdSetor, setIdSetor] = useState(initialIdSetor);
     [nome1, setNome] = useState(initialNome);
     [funcao1, setFuncao] = useState(initialFuncao);
     [ramal1, setRamal] = useState(initialRamal);
     [status1, setStatus] = useState(initialStatus);
    
-    console.log("Aloooooooo",setorId,nome,funcao,ramal,status)
+    //console.log("Aloooooooo",IdSetor,nome1,funcao1,ramal1,status1)
 
     async function PUT(){
         const data = { 
@@ -42,19 +37,18 @@ export default props =>{
         }
         
           try {
-            const response = await fetch(API_ENDPOINT + 'Funcionarios/resumo/admin/' + idFuncionario, {
+            const response = await fetch(API_ENDPOINT + 'Setores/resumo/' + Id, {
               method: 'PUT',
               headers: {
                 'Content-Type': 'application/json',
               },
               body: JSON.stringify(data),
             });
-            //console.log(API_ENDPOINT + 'Funcionarios/resumo/admin/' + idFuncionario)
+            //console.log(API_ENDPOINT + 'Setores/resumo/' + Id)
             //console.log("DATA", response.status)
             if (response.status !== 400) {
-              
               Alert.alert('Setor atualizado com sucesso!')
-              props.navigation.navigate("ListarFuncionario")
+              props.navigation.navigate("ListarSetor")
             } else {
               Alert.alert('Erro', data.message || 'Erro ao atualizar.');
             }
@@ -73,29 +67,29 @@ export default props =>{
             <TextInput 
             style={styles.text2}
             placeholder="Digite o nome setor..." 
-            value={initialNome}
+            value={nome1}
             onChangeText={(text) => setNome(text)}
             />
             <Text style={styles.text1}>Função</Text>
             <TextInput 
             style={styles.text2}
             placeholder="Digite a função..." 
-            value={initialFuncao}
+            value={funcao1}
             onChangeText={(text) => setFuncao(text)}
             />
             <Text style={styles.text1}>Ramal</Text>
             <TextInput 
             style={styles.text2}
             placeholder="Digite o ramal..." 
-            value={setRamal}
+            value={ramal1}
             onChangeText={(text) => setRamal(text)}
             />
             <Text style={styles.text1}>Status</Text>
             <TextInput 
             style={styles.text2}
             placeholder="Digite o status..." 
-            value={setStatus}
-            onChangeText={(text) => setStatus(text)}
+            value={initialStatus}
+            //onChangeText={(text) => setStatus(text)}
             />
         
             <View style={styles.containerButton}>
