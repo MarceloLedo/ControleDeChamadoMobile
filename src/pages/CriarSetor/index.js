@@ -1,7 +1,5 @@
-
-
+import {  Alert, StyleSheet, TextInput, View, Text, TouchableOpacity } from "react-native"
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, Alert, StyleSheet  } from 'react-native';
 import { API_ENDPOINT } from '../../config';
 
 export default props =>{
@@ -9,8 +7,6 @@ export default props =>{
   const [funcao, setFuncao] = useState('');
   const [ramal, setRamal] = useState('');
   
-  
-
   const criarSetor = async () => {
     try {
       const URL = API_ENDPOINT + 'Setores';
@@ -54,100 +50,114 @@ export default props =>{
   };
 
   return (
-    <View>
-      <Text>Nome:</Text>
+    <View style={styles.container}>
+      <Text style={styles.title}>Criar Setor</Text>
+      <Text style={styles.text1}>Nome</Text>
       <TextInput
+      style={styles.text2}
         value={nome}
         onChangeText={(text) => setNome(text)}
         placeholder="Digite o nome do Setor"
       />
-      <Text>Função:</Text>
+      <Text style={styles.text1}>Função</Text>
       <TextInput
+      style={styles.text2}
         value={funcao}
         onChangeText={(text) => setFuncao(text)}
         placeholder="Digite a função do Setor"
       />
-      <Text>Ramal:</Text>
+      <Text style={styles.text1}>Ramal</Text>
       <TextInput
+      style={styles.text2}
         value={ramal}
         onChangeText={(text) => setRamal(text)}
         placeholder="Digite o ramal"
       />
       
-      <Button title="Criar Setor" onPress={criarSetor} />
+      <View style={styles.containerButton}>
+        <TouchableOpacity style={styles.button} onPress={criarSetor}>
+          <Text style={styles.buttonText}>CRIAR SETOR</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={() => props.navigation.goBack()}>
+          <Text style={styles.buttonText}>VOLTAR</Text>
+        </TouchableOpacity>
+      </View>  
 
-      <Button
-                style={styles.button}
-                title="Logout"
-                onPress={() => {
-                    // dispatch({
-                    //     type: 'loginUser',
-                    //     payload: null
-                    // })
-                    props.navigation.push("SignIn");
-                }}
-            />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-    container:{
-        flex:1,
-        backgroundColor: '#0EACBC',
-        justifyContent: "flex-start",
-        alignItems: "center",
-        
-    },
-    containerButton:{
-        
-        backgroundColor: '#0EACBC',
-        justifyContent: "center",
-        alignItems: "center",
-        flexDirection: "row",
-    },
-    
-    
-    title:{
-        fontSize: 24,
-        fontWeight: 'bold',
-        marginTop: 28,
-        marginBottom: 12,
-    },
-    text:{
-        color: '#000000',
-        fontSize: 12,
-    },
-    button:{
-        backgroundColor: '#A5E899',
-        borderRadius: 10,
-        paddingVertical: 10,
-        width: '40%',
-        alignItems: 'center',
-        justifyContent: 'center',
-        margin: 20
-    },
-    buttonText:{
-        fontSize: 18,
-        color: '#fff',
-        fontWeight: 'bold',
+  container:{
+    flex:1,
+    backgroundColor: '#0EACBC',
+      
+  },
+  containerButton:{
+      
+      backgroundColor: '#0EACBC',
+      justifyContent: "center",
+      alignItems: "center",
+      flexDirection: "row",
+  },
+  title:{
+    color: 'white',
+      fontSize: 24,
+      fontWeight: 'bold',
+      marginTop: 28,
+      marginBottom: 12,
+  },
+  text:{
+      color: '#000000',
+      fontSize: 12,
+  },
+  button:{
+      backgroundColor: '#A5E899',
+      borderRadius: 10,
+      paddingVertical: 10,
+      width: '40%',
+      alignItems: 'center',
+      justifyContent: 'center',
+      margin: 20
+  },
+  buttonText:{
+      fontSize: 18,
+      color: '#fff',
+      fontWeight: 'bold',
 
-    },
-    text1:{
-        backgroundColor: '#fff',
-        color: '#000000',
-        fontSize: 16,
-        padding:13,
-        borderRadius: 10,
-        marginTop:8
-    },
-    button1:{
-        borderRadius: 10,
-        paddingVertical: 10,
-        width: '100%',
-        alignItems: 'center',
-        justifyContent: 'center',
-        margin: 10,
-        padding: 15,
-    },
+  },
+  text6:{
+      backgroundColor: '#fff',
+      color: '#000000',
+      fontSize: 16,
+      padding:13,
+      borderRadius: 10,
+      marginTop:8
+  },
+  button1:{
+      borderRadius: 10,
+      paddingVertical: 10,
+      width: '100%',
+      alignItems: 'center',
+      justifyContent: 'center',
+      margin: 10,
+      padding: 15,
+  },
+  text2:{
+    backgroundColor: '#fff',
+    color: '#000000',
+    fontSize: 14,
+    padding:5,
+    borderRadius: 10,
+    marginTop:5,
+    marginLeft:4
+  },
+  text1:{
+      color: '#000000',
+      fontSize: 14,
+      padding:5,
+      borderRadius: 10,
+      marginTop:5,
+      marginLeft:4
+  },
 })

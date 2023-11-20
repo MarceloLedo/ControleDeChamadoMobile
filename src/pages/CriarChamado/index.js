@@ -1,7 +1,6 @@
-
-import React, { useState } from 'react';
-import { View, Text, TextInput, Button, Alert, StyleSheet  } from 'react-native';
-import { API_ENDPOINT } from '../../config';
+import {  Alert, StyleSheet, TextInput, View, Text, TouchableOpacity } from "react-native"
+import { useState} from "react";
+import { API_ENDPOINT } from "../../config";
 
 export default props =>{
   const [titulo, setTitulo] = useState('');
@@ -61,56 +60,60 @@ export default props =>{
 
   return (
     <View style={styles.container}>
-      <Text>Título:</Text>
+      <Text style={styles.title}> Criar Chamado</Text>
+      <Text style={styles.text1}>Título:</Text>
       <TextInput
+      style={styles.text2}
         value={titulo}
         onChangeText={(text) => setTitulo(text)}
-        placeholder="Digite o titulo do Chamado"
+        placeholder="Digite o titulo do Chamado..."
       />
-      <Text>Descrição:</Text>
+      <Text style={styles.text1}>Descrição:</Text>
       <TextInput
+      style={styles.text2}
         value={descricao}
         onChangeText={(text) => setDescricao(text)}
-        placeholder="Digite a descrição "
+        placeholder="Digite a descrição..."
       />
-      <Text>Status:</Text>
+      <Text style={styles.text1}>Status:</Text>
       <TextInput
+      style={styles.text2}
         value={status}
         onChangeText={(text) => setStatus(text)}
-        placeholder="Digite o status  "
+        placeholder="Digite o status..."
       />
-       <Text>Prioridade:</Text>
+       <Text style={styles.text1}>Prioridade:</Text>
       <TextInput
+      style={styles.text2}
         value={prioridade}
         onChangeText={(text) => setPrioridade(text)}
-        placeholder="Digite a prioridade"
+        placeholder="Digite a prioridade..."
       />
-       <Text>classificacaoId:</Text>
+       <Text style={styles.text1}>classificacaoId:</Text>
       <TextInput
+      style={styles.text2}
         value={classificacaoId}
         onChangeText={(text) => setClassificacaoId(text)}
-        placeholder="Digite o ramal"
+        placeholder="Digite a classificacao id..."
       />
-       <Text>solicitanteId:</Text>
+       <Text style={styles.text1}>solicitanteId:</Text>
       <TextInput
+        style={styles.text2}
         value={solicitanteId}
         onChangeText={(text) => setSolicitanteId(text)}
-        placeholder="Digite o ramal"
+        placeholder="Digite o solicitante id..."
       />
       
-      <Button style={styles.button} title="Criar Chamado" onPress={criarChamado} />
+      <View style={styles.containerButton}>
+        <TouchableOpacity style={styles.button} onPress={criarChamado}>
+          <Text style={styles.buttonText}>CONFIRMAR</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={() => props.navigation.goBack()}>
+          <Text style={styles.buttonText}>VOLTAR</Text>
+        </TouchableOpacity>
+      </View>   
 
-      <Button
-                style={styles.button}
-                title="Logout"
-                onPress={() => {
-                    // dispatch({
-                    //     type: 'loginUser',
-                    //     payload: null
-                    // })
-                    props.navigation.push("SignIn");
-                }}
-            />
+      
     </View>
   );
 }
@@ -118,10 +121,8 @@ export default props =>{
 
 const styles = StyleSheet.create({
     container:{
-        flex:1,
-        backgroundColor: '#0EACBC',
-        justifyContent: "flex-start",
-        alignItems: "center",
+      flex:1,
+      backgroundColor: '#0EACBC',
         
     },
     containerButton:{
@@ -131,9 +132,8 @@ const styles = StyleSheet.create({
         alignItems: "center",
         flexDirection: "row",
     },
-    
-    
     title:{
+      color: 'white',
         fontSize: 24,
         fontWeight: 'bold',
         marginTop: 28,
@@ -158,7 +158,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
 
     },
-    text1:{
+    text6:{
         backgroundColor: '#fff',
         color: '#000000',
         fontSize: 16,
@@ -174,5 +174,22 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         margin: 10,
         padding: 15,
+    },
+    text2:{
+      backgroundColor: '#fff',
+      color: '#000000',
+      fontSize: 14,
+      padding:5,
+      borderRadius: 10,
+      marginTop:5,
+      marginLeft:4
+    },
+    text1:{
+        color: '#000000',
+        fontSize: 14,
+        padding:5,
+        borderRadius: 10,
+        marginTop:5,
+        marginLeft:4
     },
 })

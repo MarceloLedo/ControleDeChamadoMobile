@@ -2,7 +2,6 @@ import { Button, View, TouchableOpacity, Text, StyleSheet, FlatList, ActivityInd
 import { useEffect, useState } from "react"
 import { API_ENDPOINT } from "../../config";
 
-
 export default props => {
 
      
@@ -49,16 +48,28 @@ return (
                         data={data}
                         keyExtractor={({id}) => id}
                         renderItem={({item: chamado}) => (
-                            <Text style={styles.text1}>
-                            {chamado.idChamado}    {chamado.classificacaoNome}    {chamado.status}    {chamado.prioridade}    {chamado.solicitanteNome}
-                            </Text>
+                        <View>
+                            <TouchableOpacity onPress={() => props.navigation.navigate("EditarChamado", { chamadoId: chamado.idChamado, titulo: chamado.titulo, descricao : chamado.descricao, status: chamado.status, prioridade : chamado.prioridade, classificacaoNome : chamado.classificacaoId, solicitanteNome: chamado.solicitanteId, executanteNome : chamado.executanteId} )}>
+                                <Text style={styles.text1}>
+                                    {chamado.idChamado}    {chamado.classificacaoNome}    {chamado.status}    {chamado.prioridade}    {chamado.solicitanteNome}
+                                </Text>
+                            </TouchableOpacity>
+                                
+                        </View>
                         )}
                         />
 
                 )
                 }
             </View>
-            <Button title="Atualizar" onPress={ () => getChamados()} />
+            <View style={styles.containerButton}>
+                <TouchableOpacity style={styles.button} onPress={() => PUT()}>
+                    <Text style={styles.buttonText}>CONFIRMAR</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.button} onPress={() => props.navigation.goBack()}>
+                        <Text style={styles.buttonText}>VOLTAR</Text>
+                </TouchableOpacity>
+            </View>  
     
         </View>
         

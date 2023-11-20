@@ -66,11 +66,11 @@ export default props => {
             </Animatable.View>
 
             <Animatable.View animation="fadeInUp" style={styles.containerForm}> 
-            <Text style={styles.title}>Email</Text>
+            <Text style={styles.title}>Usuário</Text>
             
                         <TextInput 
                         style={styles.input}
-                            placeholder="Digite seu email..."
+                            placeholder="Digite seu usuário..."
                             value={valorLogin}
                             onChangeText={ (valorLogin) => setValorLogin(valorLogin)}
                         />

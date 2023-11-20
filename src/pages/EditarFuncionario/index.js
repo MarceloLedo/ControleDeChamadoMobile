@@ -1,8 +1,8 @@
 import {  Alert, StyleSheet, TextInput, View, Text, TouchableOpacity } from "react-native"
-import { useState, useContext } from "react";
-import { MeuContexto } from "../../context/UserContext";
 import { API_ENDPOINT } from "../../config";
 import { useRoute } from '@react-navigation/native';
+import React, { useState } from 'react';
+
 
 
 export default props =>{
@@ -70,53 +70,60 @@ export default props =>{
 
     return(
         <View style={styles.container}>
-            <Text>Alterar dados: </Text>
-            <Text>Nome Funcionario</Text>
+            <Text style={styles.title}>Editar Funcionario </Text>
+            <Text style={styles.text1}>Nome Funcionario</Text>
             <TextInput 
-            placeholder="nomeFuncionario" 
+            style={styles.text2}
+            placeholder="Digite o nome do funcionário..." 
             value={initialNomeFuncionario}
             //onChangeText={(text) => setNomeFuncionario(text)}
             />
-            <Text>Usuario</Text>
+            <Text style={styles.text1}>Usuario</Text>
             <TextInput 
-            placeholder="usuario" 
+            style={styles.text2}
+            placeholder="Digite o nome de usuário..." 
             value={initialUsuario}
             //onChangeText={(text) => setUsuario(text)}
             />
-            <Text>Status</Text>
+            <Text style={styles.text1}>Status</Text>
             <TextInput 
-            placeholder="Status" 
+            style={styles.text2}
+            placeholder="Digite o status do funcionario..." 
             //value={parseIntStatus1}
             value={initialStatus}
             //onChangeText={(text) => setStatus(text)}
             />
-            <Text>Tipo Funcionario Id</Text>
+            <Text style={styles.text1}>Tipo Funcionario Id</Text>
             <TextInput 
-            placeholder="Tipo Funcionario Id" 
+            style={styles.text2}
+            placeholder="Digite o Tipo de Funcionario..." 
             value={tipoFuncionarioId1}
             onChangeText={(text) => setTipoFuncionarioId(text)}
             />
-            <Text>Setor Id</Text>
+            <Text style={styles.text1}>Setor Id</Text>
             <TextInput 
-            placeholder="SetorId" 
+            style={styles.text2}
+            placeholder="Digite o setor do funcionario..." 
             value={setorId1}
             onChangeText={(text) => setSetorId(text)}
             />
-            <Text>Senha</Text>
+            <Text style={styles.text1}>Senha</Text>
             <TextInput 
+            style={styles.text2}
             caretHidden={false} 
-            placeholder="Senha" 
+            placeholder="Digite a senha do Funcionario..." 
             secureTextEntry={true}
             value={senha1}
             onChangeText={ (text)  => setSenha(text) }
             />
-            
-
+        
             <View style={styles.containerButton}>
                 <TouchableOpacity style={styles.button} onPress={() => PUT()}>
-                    <Text style={styles.buttonText}>CONFIRMAR</Text>
+                <Text style={styles.buttonText}>CONFIRMAR</Text>
                 </TouchableOpacity>
-           
+                <TouchableOpacity style={styles.button} onPress={() => props.navigation.goBack()}>
+                <Text style={styles.buttonText}>VOLTAR</Text>
+                </TouchableOpacity>
             </View>       
         </View>
     )
@@ -124,16 +131,8 @@ export default props =>{
 
 const styles = StyleSheet.create({
     container:{
-        flex:1,
-        backgroundColor: '#0EACBC',
-        
-        
-    },
-    containerCenter:{
-       
-        backgroundColor: '#0EACBC',
-        justifyContent: "flex-start",
-        alignItems: "center",
+      flex:1,
+      backgroundColor: '#0EACBC',
         
     },
     containerButton:{
@@ -143,9 +142,8 @@ const styles = StyleSheet.create({
         alignItems: "center",
         flexDirection: "row",
     },
-    
-    
     title:{
+      color: 'white',
         fontSize: 24,
         fontWeight: 'bold',
         marginTop: 28,
@@ -165,12 +163,12 @@ const styles = StyleSheet.create({
         margin: 20
     },
     buttonText:{
-        fontSize: 14,
+        fontSize: 18,
         color: '#fff',
         fontWeight: 'bold',
 
     },
-    text1:{
+    text6:{
         backgroundColor: '#fff',
         color: '#000000',
         fontSize: 16,
@@ -180,9 +178,28 @@ const styles = StyleSheet.create({
     },
     button1:{
         borderRadius: 10,
-        paddingVertical: 3,
+        paddingVertical: 10,
         width: '100%',
-        margin: 2,
-        padding: 10,
+        alignItems: 'center',
+        justifyContent: 'center',
+        margin: 10,
+        padding: 15,
+    },
+    text2:{
+      backgroundColor: '#fff',
+      color: '#000000',
+      fontSize: 14,
+      padding:5,
+      borderRadius: 10,
+      marginTop:5,
+      marginLeft:4
+    },
+    text1:{
+        color: '#000000',
+        fontSize: 14,
+        padding:5,
+        borderRadius: 10,
+        marginTop:5,
+        marginLeft:4
     },
 })

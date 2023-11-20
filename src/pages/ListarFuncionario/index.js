@@ -180,18 +180,13 @@ const styles = StyleSheet.create({
     container:{
         flex:1,
         backgroundColor: '#0EACBC',
-        
-        
     },
     containerCenter:{
-       
         backgroundColor: '#0EACBC',
         justifyContent: "flex-start",
         alignItems: "center",
-        
     },
     containerButton:{
-        
         backgroundColor: '#0EACBC',
         justifyContent: "center",
         alignItems: "center",

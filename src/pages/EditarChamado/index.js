@@ -62,7 +62,7 @@ export default props =>{
             if (response.status !== 400) {
               
               Alert.alert('Cadastro atualizado com sucesso!')
-              props.navigation.navigate("Administrador")
+              props.navigation.goBack()
             } else {
               Alert.alert('Erro', data.message || 'Erro ao atualizar.');
             }
@@ -76,46 +76,53 @@ export default props =>{
 
     return(
         <View style={styles.container}>
-            <Text>Alterar dados: </Text>
-            <Text>Título</Text>
+            <Text style={styles.title}>Editar Chamado</Text>
+            <Text style={styles.text1}>Título</Text>
             <TextInput 
-            placeholder="Título" 
+            style={styles.text2}
+            placeholder="Título..." 
             value={initialTitulo}
             //onChangeText={(text) => setNomeFuncionario(text)}
             />
-            <Text>Descrição</Text>
+            <Text style={styles.text1}>Descrição</Text>
             <TextInput 
-            placeholder="Descrição" 
+            style={styles.text2}
+            placeholder="Descrição..." 
             value={initialDescricao}
             //onChangeText={(text) => setUsuario(text)}
             />
-            <Text>Status</Text>
+            <Text style={styles.text1}>Status</Text>
             <TextInput 
-            placeholder="Status" 
+            style={styles.text2}
+            placeholder="Status..." 
             value={status1}
             onChangeText={(text) => setStatus(text)}
             />
-            <Text>Prioridade</Text>
+            <Text style={styles.text1}>Prioridade</Text>
             <TextInput 
-            placeholder="Prioridade" 
+            style={styles.text2}
+            placeholder="Prioridade..." 
             value={initialPrioridade}
             onChangeText={(text) => setPrioridade(text)}
             />
-            <Text>Classificacao Id</Text>
+            <Text style={styles.text1}>Classificacao Id</Text>
             <TextInput 
-            placeholder="Classificacao" 
+            style={styles.text2}
+            placeholder="Classificacao..." 
             value={initialClassificacaoNome}
             onChangeText={(text) => setClassificacaoNome(text)}
             />
-            <Text>Solicitante Id</Text>
+            <Text style={styles.text1}>Solicitante Id</Text>
             <TextInput 
-            placeholder="Solicitante" 
+            style={styles.text2}
+            placeholder="Solicitante..." 
             value={initialSolicitanteNome}
             onChangeText={ (text)  => setSolicitanteNome(text) }
             />
-            <Text>Executante Id</Text>
+            <Text style={styles.text1}>Executante Id</Text>
             <TextInput 
-            placeholder="Executante" 
+            style={styles.text2}
+            placeholder="Executante..." 
             value={executanteId1}
             onChangeText={ (text)  => setExecutante(text) }
             />
@@ -125,9 +132,9 @@ export default props =>{
                 <TouchableOpacity style={styles.button} onPress={() => PUT()}>
                     <Text style={styles.buttonText}>CONFIRMAR</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.button} onPress={() => props.navigation.push("Administrador")}>
-                        <Text style={styles.buttonText}>Voltar</Text>
-                    </TouchableOpacity>
+                <TouchableOpacity style={styles.button} onPress={() => props.navigation.goBack()}>
+                        <Text style={styles.buttonText}>VOLTAR</Text>
+                </TouchableOpacity>
             </View>       
         </View>
     )
@@ -157,10 +164,12 @@ const styles = StyleSheet.create({
     
     
     title:{
+        color: 'white',
         fontSize: 24,
         fontWeight: 'bold',
         marginTop: 28,
         marginBottom: 12,
+        marginLeft: 4,
     },
     text:{
         color: '#000000',
@@ -181,13 +190,14 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
 
     },
-    text1:{
+    text6:{
         backgroundColor: '#fff',
-        color: '#000000',
-        fontSize: 16,
-        padding:13,
+        color: '#0EACBC',
+        fontSize: 14,
+        padding:8,
         borderRadius: 10,
-        marginTop:8
+        marginTop:5,
+        marginLeft: 4
     },
     button1:{
         borderRadius: 10,
@@ -195,5 +205,22 @@ const styles = StyleSheet.create({
         width: '100%',
         margin: 2,
         padding: 10,
+    },
+    text2:{
+        backgroundColor: '#fff',
+        color: '#000000',
+        fontSize: 14,
+        padding:5,
+        borderRadius: 10,
+        marginTop:5,
+        marginLeft:4
+    },
+    text1:{
+        color: '#000000',
+        fontSize: 14,
+        padding:5,
+        borderRadius: 10,
+        marginTop:5,
+        marginLeft:4
     },
 })
