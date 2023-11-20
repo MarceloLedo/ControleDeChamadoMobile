@@ -1,0 +1,1 @@
+export const API_ENDPOINT = 'https://controledechamado-dev-dpkg.2.sg-1.fl0.io/api/'
