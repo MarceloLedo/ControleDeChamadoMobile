@@ -43,7 +43,30 @@ return (
                 <Text style={styles.text}>CHAMADO  CLASSIFICACAO  STATUS  PRIORIDADE  SOLICITANTE</Text>
             </View>
 
+
             <View style={styles.button1}>
+                {isLoading ? (
+                    <ActivityIndicator size={80} />
+                ) : (
+                   
+                        <FlatList 
+                            data={data}
+                            keyExtractor={({id}) => id}
+                            renderItem={({item: chamado}) => (
+                                <View>
+                                     <TouchableOpacity onPress={() => props.navigation.navigate("EditarChamado", { chamadoId: chamado.idChamado, titulo: chamado.titulo, descricao : chamado.descricao, status: chamado.status, prioridade : chamado.prioridade, classificacaoNome : chamado.classificacaoId, solicitanteNome: chamado.solicitanteId, executanteNome : chamado.executanteId} )}>
+                                        <Text style={styles.text1}>
+                                            {chamado.idChamado}    {chamado.classificacaoNome}    {chamado.status}    {chamado.prioridade}    {chamado.solicitanteNome}
+                                        </Text>
+                                    </TouchableOpacity>
+                                    
+                                </View>
+                            )}
+                        />
+                    
+                )}
+            </View>
+            {/*<View style={styles.button1}>
 
             {isLoading ? (
                     <ActivityIndicator size={80} />
@@ -51,16 +74,18 @@ return (
                         <FlatList 
                         data={data}
                         keyExtractor={({id}) => id}
+                        onPress={() => props.navigation.navigate("EditarChamado", { chamadoId: chamado.idChamado, titulo: chamado.titulo, descricao : chamado.descricao, status: chamado.status, prioridade : chamado.prioridade, classificacaoId : chamado.classificacaoId, solicitanteId: chamado.solicitanteId, executanteId : chamado.executanteId} )}
                         renderItem={({item: chamado}) => (
                             <Text style={styles.text1}>
                             {chamado.idChamado}    {chamado.classificacaoNome}    {chamado.status}    {chamado.prioridade}    {chamado.solicitanteNome}
                             </Text>
+                            
                         )}
                         />
 
                 )
                 }
-            </View>
+            </View>*/}
             <View style={styles.containerButton}>
                 <TouchableOpacity style={styles.button} onPress={() => getChamados()}>
                     <Text style={styles.buttonText}>ATUALIZAR</Text>

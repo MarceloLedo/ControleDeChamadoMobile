@@ -10,6 +10,7 @@ export default props =>{
     const { userId } = route.params;
     const { userNome } = route.params;
     const { userUsuario } = route.params;
+    const { userStatus } = route.params;
     
     
     const initialIdFuncionario = userId;
@@ -17,7 +18,7 @@ export default props =>{
     const initialUsuario = userUsuario;
     //const initialSenha = userId.senha;
     //const initialTipoFuncionarioId = userId.tipoFuncionarioId;
-    //const initialStatus = userId.status;
+    const initialStatus = userStatus;
     //const initialSetorId = userId.setorId;
     //console.log(initialIdFuncionario,initialNomeFuncionario,initialUsuario,initialSenha,initialTipoFuncionarioId,initialStatus,initialSetorId)
     
@@ -27,7 +28,7 @@ export default props =>{
     [usuario1, setUsuario] = useState(initialUsuario);
     [senha1, setSenha] = useState("");
     [tipoFuncionarioId1, setTipoFuncionarioId] = useState("");
-    [parseIntStatus1, setStatus] = useState("");
+    [parseIntStatus1, setStatus] = useState(initialStatus);
     [setorId1, setSetorId] = useState("");
 
     console.log("Aloooooooo",idFuncionario,nomeFuncionario1,usuario1,senha1,tipoFuncionarioId1,parseIntStatus1,setorId1)
@@ -43,17 +44,17 @@ export default props =>{
         }
         
           try {
-            const response = await fetch(API_ENDPOINT + 'Funcionarios/resumo/admin/' + Id, {
+            const response = await fetch(API_ENDPOINT + 'Funcionarios/resumo/admin/' + idFuncionario, {
               method: 'PUT',
               headers: {
                 'Content-Type': 'application/json',
               },
               body: JSON.stringify(data),
             });
-            
-            console.log("DATA", data)
+            //console.log(API_ENDPOINT + 'Funcionarios/resumo/admin/' + idFuncionario)
+            //console.log("DATA", response.status)
             if (response.status !== 400) {
-              set(data)
+              
               Alert.alert('Cadastro atualizado com sucesso!')
               props.navigation.navigate("ListarFuncionario")
             } else {
@@ -85,8 +86,9 @@ export default props =>{
             <Text>Status</Text>
             <TextInput 
             placeholder="Status" 
-            value={parseIntStatus1}
-            onChangeText={(text) => setStatus(text)}
+            //value={parseIntStatus1}
+            value={initialStatus}
+            //onChangeText={(text) => setStatus(text)}
             />
             <Text>Tipo Funcionario Id</Text>
             <TextInput 

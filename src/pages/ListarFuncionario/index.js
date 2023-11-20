@@ -114,7 +114,7 @@ export default props => {
                     name="edit"
                     color="orange"
                     size={25}
-                    onPress={() => props.navigation.navigate("EditarFuncionario", { userId: user.idFuncionario, userNome: user.nomeFuncionario, userUsuario : user.usuario} )}
+                    onPress={() => props.navigation.navigate("EditarFuncionario", { userId: user.idFuncionario, userNome: user.nomeFuncionario, userUsuario : user.usuario, userStatus: user.status} )}
                     
                 />
                 <ListItem.Chevron

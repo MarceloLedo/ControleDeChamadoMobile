@@ -1,8 +1,34 @@
-import { View, TouchableOpacity, Text, StyleSheet, FlatList, ActivityIndicator } from "react-native"
+
+import { Button, View, TouchableOpacity, Text, StyleSheet, FlatList, ActivityIndicator } from "react-native"
+import { useEffect, useState } from "react"
+import { API_ENDPOINT } from "../../config";
+
 
 
 
 export default props => {
+
+    const [isLoading, setIsLoading] = useState(true);
+    const [data, setData] = useState([]);
+    const URL = API_ENDPOINT + "Chamados/resumo"; 
+
+    const getChamados = async () => {
+        try{
+            const response = await fetch(URL);
+            const json = await response.json();
+            console.log(json);
+            setData(json);
+        } catch(error) {
+            console.error(error);
+        }finally{
+            setIsLoading(false);
+        }
+    }
+
+    useEffect(()=>{
+        getChamados();
+    }, [])
+
 
 return (
     <>
