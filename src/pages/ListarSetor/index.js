@@ -87,7 +87,7 @@ export default props => {
                 </ListItem.Content>
                 <ListItem.Chevron
                     name="edit"
-                    color="orange"
+                    color="#FFDEAD"
                     size={25}
                     //onPress={() => props.navigation.navigate("EditarSetor", user.idSetor)}
                     onPress={() => props.navigation.navigate("EditarSetor", {idSetor: user.idSetor, setorNome: user.nome, setorFuncao : user.funcao, setorRamal: user.ramal, setorStatus : user.status})}

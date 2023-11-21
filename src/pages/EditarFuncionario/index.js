@@ -119,7 +119,7 @@ export default props =>{
         
             <View style={styles.containerButton}>
                 <TouchableOpacity style={styles.button} onPress={() => PUT()}>
-                <Text style={styles.buttonText}>CONFIRMAR</Text>
+                <Text style={styles.buttonText}>ATUALIZAR</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.button} onPress={() => props.navigation.goBack()}>
                 <Text style={styles.buttonText}>VOLTAR</Text>

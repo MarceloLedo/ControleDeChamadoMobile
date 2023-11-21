@@ -15,6 +15,7 @@ import SeusChamados from '../pages/SeusChamados';
 import TodosChamados from '../pages/TodosChamados';
 import EditarFuncionario from '../pages/EditarFuncionario';
 import EditarSetor from '../pages/EditarSetor';
+import EditarChamadoDelete from '../pages/EditarChamadoDelete';
 
 
 
@@ -81,6 +82,9 @@ export default function Routes(){
                 
             </Stack.Screen>
             <Stack.Screen name='EditarSetor' component={EditarSetor} options={{headerShown: false}}>
+                
+            </Stack.Screen>
+            <Stack.Screen name='EditarChamadoDelete' component={EditarChamadoDelete} options={{headerShown: false}}>
                 
             </Stack.Screen>
         </Stack.Navigator>

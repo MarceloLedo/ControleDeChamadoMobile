@@ -56,12 +56,12 @@ export default props =>{
               },
               body: JSON.stringify(data),
             });
-            //console.log(API_ENDPOINT + 'Funcionarios/resumo/admin/' + idFuncionario)
+            
             console.log("DATA", data)
             console.log("DATA", response.status)
             if (response.status !== 400) {
               
-              Alert.alert('Cadastro atualizado com sucesso!')
+              Alert.alert('Chamado atualizado com sucesso!')
               props.navigation.goBack()
             } else {
               Alert.alert('Erro', data.message || 'Erro ao atualizar.');
@@ -72,6 +72,55 @@ export default props =>{
          
         }
     
+        const deleteUser = async (idChamado1) => {
+            const URLCancelar = API_ENDPOINT + 'Chamados/' + idChamado1;
+            
+            const options = {
+                method: 'DELETE'
+            };
+            console.log(URLCancelar)
+            try {
+                
+                //console.log(URLCancelar)
+                const response = await fetch(URLCancelar, options);
+                if (!response.ok) {
+                    throw new Error('Erro na solicitação HTTP');
+                }
+                const responseData = await response.json();
+                console.log("Resposta da requisição: ", responseData);
+                Alert.alert(
+                    'Exclusão!',
+                    'Usuário excluído com sucesso!',
+                    [
+                        {
+                            text: 'Ok',
+                            onPress: () => props.navigation.push("Executador") // Atualiza a lista após a exclusão
+                        }
+                    ]
+                );
+            } catch (error) {
+                console.error('Erro: ', error);
+            }
+        };
+    
+        function deleteConfirm(idChamado1) {
+            Alert.alert('Excluir usuário!', 'Tem certeza que deseja excluir o usuário?',
+                [
+                    {
+                        text: "Sim",
+                        onPress() {
+                            deleteUser(idChamado1);
+                        }
+                    },
+                    {
+                        text: "Não"
+                    }
+                ]
+            );
+        }
+    
+
+
     
 
     return(
@@ -132,10 +181,15 @@ export default props =>{
                 <TouchableOpacity style={styles.button} onPress={() => PUT()}>
                     <Text style={styles.buttonText}>ATUALIZAR</Text>
                 </TouchableOpacity>
+                <TouchableOpacity style={styles.buttonDelete} onPress={() => { deleteConfirm(idChamado1)}}>
+                    <Text style={styles.buttonText}>DELETAR</Text>
+                </TouchableOpacity>
+            </View> 
+            <View style={styles.containerButton}>
                 <TouchableOpacity style={styles.button} onPress={() => props.navigation.goBack()}>
                     <Text style={styles.buttonText}>VOLTAR</Text>
                 </TouchableOpacity>
-            </View>       
+            </View>     
         </View>
     )
 }
@@ -144,18 +198,13 @@ const styles = StyleSheet.create({
     container:{
         flex:1,
         backgroundColor: '#0EACBC',
-        
-        
     },
     containerCenter:{
-       
         backgroundColor: '#0EACBC',
         justifyContent: "flex-start",
         alignItems: "center",
-        
     },
     containerButton:{
-        
         backgroundColor: '#0EACBC',
         justifyContent: "center",
         alignItems: "center",
@@ -222,5 +271,14 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         marginTop:5,
         marginLeft:4
+    },
+    buttonDelete:{
+        backgroundColor: 'red',
+        borderRadius: 10,
+        paddingVertical: 10,
+        width: '40%',
+        alignItems: 'center',
+        justifyContent: 'center',
+        margin: 20
     },
 })

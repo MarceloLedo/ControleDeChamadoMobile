@@ -32,14 +32,11 @@ export default props => {
 return (
     <>
         <View style={styles.container}>
-            {/*<View style={styles.containerButton}>
-                <TouchableOpacity style={styles.button} onPress={() => props.navigation.navigate('SeusChamados')}>
-                    <Text style={styles.buttonText1}>SEUS CHAMADOS ABERTOS</Text>
+            <View style={styles.containerButton}>
+                <TouchableOpacity style={styles.button} onPress={() => props.navigation.navigate('CriarChamado')}>
+                    <Text style={styles.buttonText}>+ CHAMADO</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.button} onPress={() => props.navigation.navigate('TodosChamados')}>
-                    <Text style={styles.buttonText}>TODOS CHAMADOS</Text>
-                </TouchableOpacity>
-            </View>*/}
+            </View>
             <View>
                 <Text style={styles.text}>CHAMADO  CLASSIFICACAO  STATUS  PRIORIDADE  SOLICITANTE</Text>
             </View>
@@ -53,7 +50,7 @@ return (
                         keyExtractor={({id}) => id}
                         renderItem={({item: chamado}) => (
                             <View>
-                                <TouchableOpacity onPress={() => props.navigation.navigate("EditarChamado", { chamadoId: chamado.idChamado, titulo: chamado.titulo, descricao : chamado.descricao, status: chamado.status, prioridade : chamado.prioridade, classificacaoNome : chamado.classificacaoId, solicitanteNome: chamado.solicitanteId, executanteNome : chamado.executanteId} )}>
+                                <TouchableOpacity onPress={() => props.navigation.navigate("EditarChamadoDelete", { chamadoId: chamado.idChamado, titulo: chamado.titulo, descricao : chamado.descricao, status: chamado.status, prioridade : chamado.prioridade, classificacaoNome : chamado.classificacaoId, solicitanteNome: chamado.solicitanteId, executanteNome : chamado.executanteId} )}>
                                     <Text style={styles.text1}>
                                         {chamado.idChamado}    {chamado.classificacaoNome}    {chamado.status}    {chamado.prioridade}    {chamado.solicitanteNome}
                                     </Text>
