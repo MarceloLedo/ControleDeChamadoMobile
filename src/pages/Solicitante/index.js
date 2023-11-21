@@ -49,11 +49,11 @@ return (
                         keyExtractor={({id}) => id}
                         renderItem={({item: chamado}) => (
                         <View>
-                            <TouchableOpacity onPress={() => props.navigation.navigate("EditarChamado", { chamadoId: chamado.idChamado, titulo: chamado.titulo, descricao : chamado.descricao, status: chamado.status, prioridade : chamado.prioridade, classificacaoNome : chamado.classificacaoId, solicitanteNome: chamado.solicitanteId, executanteNome : chamado.executanteId} )}>
+                            
                                 <Text style={styles.text1}>
                                     {chamado.idChamado}    {chamado.classificacaoNome}    {chamado.status}    {chamado.prioridade}    {chamado.solicitanteNome}
                                 </Text>
-                            </TouchableOpacity>
+                            
                                 
                         </View>
                         )}
@@ -63,8 +63,8 @@ return (
                 }
             </View>
             <View style={styles.containerButton}>
-                <TouchableOpacity style={styles.button} onPress={() => PUT()}>
-                    <Text style={styles.buttonText}>CONFIRMAR</Text>
+                <TouchableOpacity style={styles.button} onPress={() => getChamados()}>
+                    <Text style={styles.buttonText}>ATUALIZAR</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.button} onPress={() => props.navigation.goBack()}>
                         <Text style={styles.buttonText}>VOLTAR</Text>

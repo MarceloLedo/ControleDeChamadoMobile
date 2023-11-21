@@ -3,6 +3,7 @@ import {  Alert, StyleSheet, TextInput, View, Text, TouchableOpacity } from "rea
 import { API_ENDPOINT } from "../../config";
 import React, { useState } from 'react';
 
+
 export default props =>{
     const route = useRoute();
     const { idSetor } = route.params;
@@ -18,7 +19,7 @@ export default props =>{
     const initialStatus= setorStatus;
     
     //console.log(initialIdSetor,initialNome,initialFuncao,initialRamal,initialStatus)
-    
+
     const Id = idSetor;
     [IdSetor, setIdSetor] = useState(initialIdSetor);
     [nome1, setNome] = useState(initialNome);
@@ -26,14 +27,17 @@ export default props =>{
     [ramal1, setRamal] = useState(initialRamal);
     [status1, setStatus] = useState(initialStatus);
    
+    
     //console.log("Aloooooooo",IdSetor,nome1,funcao1,ramal1,status1)
 
     async function PUT(){
+        let statusBoolean = status1.toLowerCase() === "true";
+        
         const data = { 
             nome : nome1,
             funcao: funcao1,
             ramal : ramal1,
-            status : status1,
+            status : statusBoolean,
         }
         
           try {
@@ -45,7 +49,7 @@ export default props =>{
               body: JSON.stringify(data),
             });
             //console.log(API_ENDPOINT + 'Setores/resumo/' + Id)
-            //console.log("DATA", response.status)
+            console.log("DATA", data)
             if (response.status !== 400) {
               Alert.alert('Setor atualizado com sucesso!')
               props.navigation.navigate("ListarSetor")
@@ -88,10 +92,10 @@ export default props =>{
             <TextInput 
             style={styles.text2}
             placeholder="Digite o status..." 
-            value={initialStatus}
-            //onChangeText={(text) => setStatus(text)}
+            value={status1}
+            onChangeText={(text) => setStatus(text)}
             />
-        
+
             <View style={styles.containerButton}>
                 <TouchableOpacity style={styles.button} onPress={() => PUT()}>
                 <Text style={styles.buttonText}>CONFIRMAR</Text>
@@ -107,11 +111,9 @@ export default props =>{
 const styles = StyleSheet.create({
     container:{
       flex:1,
-      backgroundColor: '#0EACBC',
-        
+      backgroundColor: '#0EACBC', 
     },
     containerButton:{
-        
         backgroundColor: '#0EACBC',
         justifyContent: "center",
         alignItems: "center",
@@ -141,7 +143,6 @@ const styles = StyleSheet.create({
         fontSize: 18,
         color: '#fff',
         fontWeight: 'bold',
-
     },
     text6:{
         backgroundColor: '#fff',

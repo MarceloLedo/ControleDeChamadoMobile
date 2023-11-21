@@ -31,13 +31,15 @@ export default props => {
     
 
     const deleteUser = async (idSetor) => {
-        const URLCancelar = API_ENDPOINT + 'Setores' + idSetor;
+        const URLCancelar = API_ENDPOINT + 'Setores/' + idSetor;
         
         const options = {
             method: 'DELETE'
         };
 
         try {
+            
+            console.log(URLCancelar)
             const response = await fetch(URLCancelar, options);
             if (!response.ok) {
                 throw new Error('Erro na solicitação HTTP');

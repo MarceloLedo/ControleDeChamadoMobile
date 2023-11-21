@@ -32,14 +32,14 @@ export default props => {
 return (
     <>
         <View style={styles.container}>
-            <View style={styles.containerButton}>
+            {/*<View style={styles.containerButton}>
                 <TouchableOpacity style={styles.button} onPress={() => props.navigation.navigate('SeusChamados')}>
                     <Text style={styles.buttonText1}>SEUS CHAMADOS ABERTOS</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.button} onPress={() => props.navigation.navigate('TodosChamados')}>
                     <Text style={styles.buttonText}>TODOS CHAMADOS</Text>
                 </TouchableOpacity>
-            </View>
+            </View>*/}
             <View>
                 <Text style={styles.text}>CHAMADO  CLASSIFICACAO  STATUS  PRIORIDADE  SOLICITANTE</Text>
             </View>
